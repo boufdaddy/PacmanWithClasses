@@ -30,8 +30,8 @@ namespace FinalProjectPacmanWithClasses
             xLoc = x;
             yLoc = y;
             width = 30;
-            height = 200;
-            pen = new Pen(Color.Blue);
+            height = 350;
+            pen = new Pen(Color.Red);
             form = mainform;
         }
 

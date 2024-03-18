@@ -12,9 +12,10 @@ namespace FinalProjectPacmanWithClasses
 {
     public partial class Form1 : Form
     {
-        
+        List<Coin> myPicList = new List<Coin>();
 
-        private Coin coin;
+
+       // private Coin coin;
         private Wall wall1;
         private Wall wall2;
         private Wall wall3;
@@ -32,6 +33,51 @@ namespace FinalProjectPacmanWithClasses
             SetStyle(ControlStyles.UserPaint, true);
             this.Width = 1700;
             this.Height = 1000;
+            Coin coin;
+            // to place my coins in specific locations on the form
+
+            for (int i = 0; i < 10; i++)
+            {
+                coin = new Coin(450 + (100*i), this.ClientSize.Height/4, this);
+                
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                coin = new Coin(450 + (100 * i), this.ClientSize.Height / 6, this);
+
+            }
+
+
+            for (int i = 0; i < 10; i++)
+            {
+                coin = new Coin(450 + (100 * i), this.ClientSize.Height / 10, this);
+
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                coin = new Coin(450 + (100 * i), this.ClientSize.Height / 25, this);
+
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                coin = new Coin(450 + (100 * i), this.ClientSize.Height - 50, this);
+
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                coin = new Coin(450 + (100 * i), this.ClientSize.Height - 150, this);
+
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                coin = new Coin(450 + (100 * i), this.ClientSize.Height - 250, this);
+
+            }
 
             //coin = new Coin(400,this.ClientSize.Height / 4, this);
             wall1 = new Wall(350, 0, this);
@@ -51,26 +97,26 @@ namespace FinalProjectPacmanWithClasses
             wall2.Draw(e.Graphics);
             wall3.Draw(e.Graphics);
             
-            for (int i = 0; i < 10; i++)
-            {
-                coin = new Coin(450 + (100*i), this.ClientSize.Height / 4, this);
-                coin.Draw(e.Graphics);
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    coin = new Coin(450 + (100*i), this.ClientSize.Height / 4, this);
+            //    coin.Draw(e.Graphics);
                
-            }
+            //}
 
-            for (int i = 0; i < 10; i++)
-            {
-                coin = new Coin(450 + (100 * i), this.ClientSize.Height / 6, this);
-                coin.Draw(e.Graphics);
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    coin = new Coin(450 + (100 * i), this.ClientSize.Height / 6, this);
+            //    coin.Draw(e.Graphics);
 
-            }
+            //}
 
-            for (int i = 0; i < 10; i++)
-            {
-                coin = new Coin(450 + (100 * i), this.ClientSize.Height / 10, this);
-                coin.Draw(e.Graphics);
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    coin = new Coin(450 + (100 * i), this.ClientSize.Height / 10, this);
+            //    coin.Draw(e.Graphics);
 
-            }
+            //}
             //for (int i = 0; i < 10; i++)
             //{
             //    coin = new Coin(450 + (100 * i), this.ClientSize.Height / 14, this);

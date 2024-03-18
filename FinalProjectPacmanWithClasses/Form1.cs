@@ -79,7 +79,7 @@ namespace FinalProjectPacmanWithClasses
 
             }
 
-            //coin = new Coin(400,this.ClientSize.Height / 4, this);
+            //create instances for the wall borders
             wall1 = new Wall(350, 0, this);
             wall2 = new Wall(900, 0, this);
             wall3 = new Wall(700, 640, this);
@@ -97,32 +97,7 @@ namespace FinalProjectPacmanWithClasses
             wall2.Draw(e.Graphics);
             wall3.Draw(e.Graphics);
             
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    coin = new Coin(450 + (100*i), this.ClientSize.Height / 4, this);
-            //    coin.Draw(e.Graphics);
-               
-            //}
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    coin = new Coin(450 + (100 * i), this.ClientSize.Height / 6, this);
-            //    coin.Draw(e.Graphics);
-
-            //}
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    coin = new Coin(450 + (100 * i), this.ClientSize.Height / 10, this);
-            //    coin.Draw(e.Graphics);
-
-            //}
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    coin = new Coin(450 + (100 * i), this.ClientSize.Height / 14, this);
-            //    coin.Draw(e.Graphics);
-
-            //}
+         
 
         }
     }

@@ -25,7 +25,7 @@ namespace FinalProjectPacmanWithClasses
         //public int Width { get { return width; } }
         //public int Height { get { return height; } }
 
-        private PictureBox myPic;
+        public PictureBox myPic;
         private Random rand = new Random();
         private Form form;
         private int xLoc;

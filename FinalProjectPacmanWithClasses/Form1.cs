@@ -13,9 +13,10 @@ namespace FinalProjectPacmanWithClasses
     public partial class Form1 : Form
     {
         List<Coin> myPicList = new List<Coin>();
+        List<Wall> wallList = new List<Wall>();
 
 
-       // private Coin coin;
+        // private Coin coin;
         private Wall wall1;
         private Wall wall2;
         private Wall wall3;
@@ -43,6 +44,7 @@ namespace FinalProjectPacmanWithClasses
             
             Pinkalien = new Alien(450, this.ClientSize.Height - 670, this, new Bitmap("p.gif"));
             RedAlien = new Alien(1200, this.ClientSize.Height - 800, this, new Bitmap("r.gif"));
+            YellowAlien = new Alien(1100, this.ClientSize.Height - 150, this, new Bitmap("y.gif"));
             Coin coin;
             // to place my coins in specific locations on the form
 
@@ -97,6 +99,7 @@ namespace FinalProjectPacmanWithClasses
 
             //create instances for the wall borders
             wall1 = new Wall(350, 0, this);
+            wallList.Add(wall1);
             wall2 = new Wall(900, 0, this);
             wall3 = new Wall(1300, 0, this);
             wall4 = new Wall(500, 650, this);
@@ -110,7 +113,16 @@ namespace FinalProjectPacmanWithClasses
             Invalidate();
             Pinkalien.MoveLeftRight();
             RedAlien.Move();
-            
+            YellowAlien.MoveLeftRight();
+            if (BallPaddleCollisionTest(wall1, Pinkalien))
+            {
+                Pinkalien.ChangeDir();
+            }
+            if (BallPaddleCollisionTest(wall2, Pinkalien))
+            {
+                Pinkalien.ChangeDir();
+            }
+
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -121,8 +133,27 @@ namespace FinalProjectPacmanWithClasses
             wall4.Draw(e.Graphics);
             wall5.Draw(e.Graphics);
             wall6.Draw(e.Graphics);
-         
+            if (BallPaddleCollisionTest(wall1, Pinkalien))
+            {
+                Pinkalien.ChangeDir();
+            }
 
+
+
+        }
+
+        private bool BallPaddleCollisionTest(Wall wall, Alien Alien)
+        {
+            if (wall.X + wall.Width < Alien.X)
+                return false;
+            if (Alien.X + Alien.Width < wall.X)
+                return false;
+            if (wall.Y + wall.Height < Alien.Y)
+                return false;
+            if (Alien.Y + Alien.Height < wall.Y)
+                return false;
+
+            return true;
         }
     }
 }

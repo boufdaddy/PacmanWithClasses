@@ -16,8 +16,13 @@ namespace FinalProjectPacmanWithClasses
         private Form form;
         private int xLoc;
         private int yLoc;
-        private int xSpeed = 4;
+        private int xSpeed = 10;
         private int ySpeed = 6;
+
+        public int X { get { return myPic.Left; } }
+        public int Y { get { return myPic.Top; } }
+        public int Width { get { return myPic.Width; } }
+        public int Height { get { return myPic.Height; } }
         public Alien(int x, int y, Form mainForm, Bitmap bitmap)    // Constructor. same name as class itself, called at instantiation
         {
             myPic = new PictureBox();
@@ -54,5 +59,12 @@ namespace FinalProjectPacmanWithClasses
 
 
         }
+
+        public void ChangeDir()
+        {
+            xSpeed *= -1;
+            //ySpeed *= -1;
+        }
     }
 }
+

@@ -32,6 +32,11 @@ namespace FinalProjectPacmanWithClasses
         private int yLoc;
         private int xSpeed = 4;
         private int ySpeed = 6;
+
+        public int X { get { return xLoc; } }
+        public int Y { get { return yLoc; } }
+        public int Width { get { return myPic.Width; } }
+        public int Height { get { return myPic.Height; } }
         public Coin(int x, int y, Form mainForm)    // Constructor. same name as class itself, called at instantiation
         {
             myPic = new PictureBox();

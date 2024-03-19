@@ -20,6 +20,13 @@ namespace FinalProjectPacmanWithClasses
         private Wall wall2;
         private Wall wall3;
         private Wall wall4;
+        private Wall wall5;
+        private Wall wall6;
+        Alien Pinkalien;
+        Alien RedAlien;
+        Alien YellowAlien;
+
+
         public Form1()
         {
             InitializeComponent();
@@ -33,16 +40,20 @@ namespace FinalProjectPacmanWithClasses
             SetStyle(ControlStyles.UserPaint, true);
             this.Width = 1700;
             this.Height = 1000;
+            
+            Pinkalien = new Alien(450, this.ClientSize.Height - 670, this, new Bitmap("p.gif"));
+            RedAlien = new Alien(1200, this.ClientSize.Height - 800, this, new Bitmap("r.gif"));
             Coin coin;
             // to place my coins in specific locations on the form
 
             for (int i = 0; i < 10; i++)
             {
                 coin = new Coin(450 + (100*i), this.ClientSize.Height/4, this);
-                
+                myPicList.Add(coin);
+
             }
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 coin = new Coin(450 + (100 * i), this.ClientSize.Height / 6, this);
 
@@ -78,17 +89,28 @@ namespace FinalProjectPacmanWithClasses
                 coin = new Coin(450 + (100 * i), this.ClientSize.Height - 250, this);
 
             }
+            // for collision
+            //foreach (Coin c in myPicList)
+            //{
+            //    if (c.myPic.Bounds.IntersectsWith(c.myPic.Bounds))
+            //}
 
             //create instances for the wall borders
             wall1 = new Wall(350, 0, this);
             wall2 = new Wall(900, 0, this);
-            wall3 = new Wall(700, 640, this);
-
+            wall3 = new Wall(1300, 0, this);
+            wall4 = new Wall(500, 650, this);
+            wall5 = new Wall(1000, 650, this);
+            wall6 = new Wall(1550, 650, this);
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             Invalidate();
+            Pinkalien.MoveLeftRight();
+            RedAlien.Move();
+            
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -96,7 +118,9 @@ namespace FinalProjectPacmanWithClasses
             wall1.Draw(e.Graphics);
             wall2.Draw(e.Graphics);
             wall3.Draw(e.Graphics);
-            
+            wall4.Draw(e.Graphics);
+            wall5.Draw(e.Graphics);
+            wall6.Draw(e.Graphics);
          
 
         }

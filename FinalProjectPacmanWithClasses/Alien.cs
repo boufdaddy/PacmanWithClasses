@@ -14,21 +14,35 @@ namespace FinalProjectPacmanWithClasses
         public PictureBox myPic;
         private Random rand = new Random();
         private Form form;
+        private int xLoc;
+        private int yLoc;
         private int xSpeed = 4;
         private int ySpeed = 6;
-        public Alien(int x, int y, Form mainForm)    // Constructor. same name as class itself, called at instantiation
+        public Alien(int x, int y, Form mainForm, Bitmap bitmap)    // Constructor. same name as class itself, called at instantiation
         {
             myPic = new PictureBox();
-            myPic.Image = new Bitmap("happy.jpg");
+            myPic.Image = bitmap;
             myPic.SizeMode = PictureBoxSizeMode.StretchImage;
-            myPic.Width = rand.Next(20, 100);
+            myPic.Width = 70;
             myPic.Height = myPic.Width;
-            myPic.Left = rand.Next(100, 1000);
-            myPic.Top = rand.Next(50, 300);
+            myPic.Left = x;
+            myPic.Top = y;
+            //xLoc = x;
+           // yLoc = y;
             mainForm.Controls.Add(myPic);
             form = mainForm;
 
         }
+        public void MoveLeftRight()
+        {
+            myPic.Left += xSpeed;
+            //myPic.Top += ySpeed;
+            if (myPic.Right >= form.ClientSize.Width) xSpeed *= -1;
+            if (myPic.Left <= 0) xSpeed *= -1;
+       
+
+        }
+
         public void Move()
         {
             myPic.Left += xSpeed;

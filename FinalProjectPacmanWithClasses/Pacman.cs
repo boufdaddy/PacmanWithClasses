@@ -15,16 +15,20 @@ namespace FinalProjectPacmanWithClasses
         private Form form;
         private int xLoc;
         private int yLoc;
-        private int pacmanSpeed;
+        private int pacmanSpeed = 8;
         //private int ySpeed = 6;
 
+        public int X { get { return myPic.Left; } }
+        public int Y { get { return myPic.Top; } }
+        public int Width { get { return myPic.Width; } }
+        public int Height { get { return myPic.Height; } }
 
         public Pacman(int x, int y, Form mainForm, Bitmap bitmap)    // Constructor. same name as class itself, called at instantiation
         {
             myPic = new PictureBox();
             myPic.Image = bitmap;
             myPic.SizeMode = PictureBoxSizeMode.StretchImage;
-            myPic.Width = 70;
+            myPic.Width = 60;
             myPic.Height = myPic.Width;
             myPic.Left = x;
             myPic.Top = y;
@@ -33,6 +37,30 @@ namespace FinalProjectPacmanWithClasses
             mainForm.Controls.Add(myPic);
             form = mainForm;
 
+        }
+
+        public void leftMove(Bitmap bitmap)
+        {
+            myPic.Image = bitmap;
+            myPic.Left -= pacmanSpeed;
+        }
+
+        public void Rightmove(Bitmap bitmap)
+        {
+            myPic.Image = bitmap;
+            myPic.Left += pacmanSpeed;
+        }
+
+        public void downMove(Bitmap bitmap)
+        {
+            myPic.Image = bitmap;
+            myPic.Top += pacmanSpeed;
+        }
+
+        public void UpMove(Bitmap bitmap)
+        {
+            myPic.Image = bitmap;
+            myPic.Top -= pacmanSpeed;
         }
     }
 }

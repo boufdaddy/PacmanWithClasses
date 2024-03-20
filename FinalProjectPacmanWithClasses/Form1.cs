@@ -12,9 +12,19 @@ namespace FinalProjectPacmanWithClasses
 {
     public partial class Form1 : Form
     {
+        //BOOLEAN OPERATIONS TO MAKE DECISIONS IN THE GAMES
+        bool upMove;
+        bool downMove;
+        bool leftMove;
+        bool rightMove;
+        bool gameover;
+
         List<Coin> myPicList = new List<Coin>();
         List<Wall> wallList = new List<Wall>();
 
+        private enum KeyMove { none, up, down, left, right }
+
+        Pacman Pac;
 
         // private Coin coin;
         private Wall wall1;
@@ -41,7 +51,11 @@ namespace FinalProjectPacmanWithClasses
             SetStyle(ControlStyles.UserPaint, true);
             this.Width = 1700;
             this.Height = 1000;
-            
+
+
+            Pac = new Pacman(100, 500, this, new Bitmap("rightPac.gif"));
+
+
             Pinkalien = new Alien(450, this.ClientSize.Height - 670, this, new Bitmap("p.gif"));
             RedAlien = new Alien(1200, this.ClientSize.Height - 800, this, new Bitmap("r.gif"));
             YellowAlien = new Alien(1100, this.ClientSize.Height - 150, this, new Bitmap("y.gif"));
@@ -58,38 +72,39 @@ namespace FinalProjectPacmanWithClasses
             for (int i = 0; i < 5; i++)
             {
                 coin = new Coin(450 + (100 * i), this.ClientSize.Height / 6, this);
-
+                myPicList.Add(coin);
             }
 
 
             for (int i = 0; i < 10; i++)
             {
                 coin = new Coin(450 + (100 * i), this.ClientSize.Height / 10, this);
-
+                myPicList.Add(coin);
             }
 
             for (int i = 0; i < 10; i++)
             {
                 coin = new Coin(450 + (100 * i), this.ClientSize.Height / 25, this);
-
+                myPicList.Add(coin);
             }
 
             for (int i = 0; i < 10; i++)
             {
                 coin = new Coin(450 + (100 * i), this.ClientSize.Height - 50, this);
+                myPicList.Add(coin);
 
             }
 
             for (int i = 0; i < 10; i++)
             {
                 coin = new Coin(450 + (100 * i), this.ClientSize.Height - 150, this);
-
+                myPicList.Add(coin);
             }
 
             for (int i = 0; i < 10; i++)
             {
                 coin = new Coin(450 + (100 * i), this.ClientSize.Height - 250, this);
-
+                myPicList.Add(coin);
             }
             // for collision
             //foreach (Coin c in myPicList)
@@ -114,6 +129,7 @@ namespace FinalProjectPacmanWithClasses
             Pinkalien.MoveLeftRight();
             RedAlien.Move();
             YellowAlien.MoveLeftRight();
+            //Collision code for Pinkalien
             if (BallPaddleCollisionTest(wall1, Pinkalien))
             {
                 Pinkalien.ChangeDir();
@@ -122,21 +138,71 @@ namespace FinalProjectPacmanWithClasses
             {
                 Pinkalien.ChangeDir();
             }
+            //collison code for YellowAlien
+            if (BallPaddleCollisionTest(wall5, YellowAlien))
+            {
+                YellowAlien.ChangeDir();
+            }
+
+            if (BallPaddleCollisionTest(wall6, YellowAlien))
+            {
+                YellowAlien.ChangeDir();
+            }
+            //collision code for Red Alien
+            if (BallPaddleCollisionTest(wall1, RedAlien))
+            {
+                RedAlien.ChangeDir();
+            }
+            if (BallPaddleCollisionTest(wall2, RedAlien))
+            {
+                RedAlien.ChangeDir();
+            }
+            if (BallPaddleCollisionTest(wall3, RedAlien))
+            {
+                RedAlien.ChangeDir();
+            }
+            if (BallPaddleCollisionTest(wall4, RedAlien))
+            {
+                RedAlien.ChangeDir();
+            }
+            if (BallPaddleCollisionTest(wall5, RedAlien))
+            {
+                RedAlien.ChangeDir();
+            }
+            if (BallPaddleCollisionTest(wall6, RedAlien))
+            {
+                RedAlien.ChangeDir();
+            }
+
+            if (leftMove == true)
+            {
+                Pac.leftMove(new Bitmap("leftPac.gif"));            
+            }
+            if (rightMove == true)
+            {
+                Pac.Rightmove(new Bitmap("rightPac.gif"));
+            }
+            if (downMove == true)
+            {
+                Pac.downMove(new Bitmap("downPac.gif"));
+            }
+            if (upMove == true)
+            {
+                Pac.UpMove(new Bitmap("upPac.gif"));
+            }
 
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            //Draw the differnt walls on the form
             wall1.Draw(e.Graphics);
             wall2.Draw(e.Graphics);
             wall3.Draw(e.Graphics);
             wall4.Draw(e.Graphics);
             wall5.Draw(e.Graphics);
             wall6.Draw(e.Graphics);
-            if (BallPaddleCollisionTest(wall1, Pinkalien))
-            {
-                Pinkalien.ChangeDir();
-            }
+            
 
 
 
@@ -154,6 +220,50 @@ namespace FinalProjectPacmanWithClasses
                 return false;
 
             return true;
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            //this is to activate the arrow keys to be able to move Pacman
+            if (e.KeyCode == Keys.Up)
+            {
+                upMove = true;
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                downMove = true;
+            }
+
+            if (e.KeyCode == Keys.Left)
+            {
+                leftMove = true;
+            }
+            if (e.KeyCode == Keys.Right)
+            {
+                rightMove = true;
+            }
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            //this is to activate the arrow keys to be able to move Pacman
+            if (e.KeyCode == Keys.Up)
+            {
+                upMove = false;
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                downMove = false;
+            }
+
+            if (e.KeyCode == Keys.Left)
+            {
+                leftMove = false;
+            }
+            if (e.KeyCode == Keys.Right)
+            {
+                rightMove = false;
+            }
         }
     }
 }

@@ -116,6 +116,7 @@ namespace FinalProjectPacmanWithClasses
             wall1 = new Wall(350, 0, this);
             wallList.Add(wall1);
             wall2 = new Wall(900, 0, this);
+           
             wall3 = new Wall(1300, 0, this);
             wall4 = new Wall(500, 650, this);
             wall5 = new Wall(1000, 650, this);
@@ -191,6 +192,23 @@ namespace FinalProjectPacmanWithClasses
                 Pac.UpMove(new Bitmap("upPac.gif"));
             }
 
+
+            if (Pac.myPic.Left < 0)
+            {
+                Pac.myPic.Left = 1700;
+            }
+            if (Pac.myPic.Left > 1700)
+            {
+                Pac.myPic.Left = 0;
+            }
+            if (Pac.myPic.Top < -10)
+            {
+                Pac.myPic.Top = 951;
+            }
+            if (Pac.myPic.Top > 951)
+            {
+                Pac.myPic.Top = 0;
+            }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)

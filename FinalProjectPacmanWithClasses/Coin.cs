@@ -33,8 +33,8 @@ namespace FinalProjectPacmanWithClasses
         private int xSpeed = 4;
         private int ySpeed = 6;
 
-        public int X { get { return xLoc; } }
-        public int Y { get { return yLoc; } }
+        public int X { get { return myPic.Left; } }
+        public int Y { get { return myPic.Top; } }
         public int Width { get { return myPic.Width; } }
         public int Height { get { return myPic.Height; } }
         public Coin(int x, int y, Form mainForm)    // Constructor. same name as class itself, called at instantiation
@@ -44,8 +44,8 @@ namespace FinalProjectPacmanWithClasses
             myPic.SizeMode = PictureBoxSizeMode.StretchImage;
             myPic.Width = 20;
             myPic.Height = 20;
-            xLoc = x;
-            yLoc = y;
+            myPic.Left = x;
+            myPic.Top = y;
             myPic.Location = new System.Drawing.Point(x, y);
             //myPic.Left = rand.Next(100, 1000);
             // myPic.Top = rand.Next(50, 300);

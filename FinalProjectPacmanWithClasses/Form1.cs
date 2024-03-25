@@ -332,12 +332,19 @@ namespace FinalProjectPacmanWithClasses
         private void GameOverloss()
         {
             //a simple method to stop the game when certain conditions earlier happen
-            //gameover = true;
+            gameover = true;
             PacTimer.Stop();
            // lblrestartMessage.Visible = true;
            // lbllossMessage.Visible = true;
         }
 
+        private void GameOverWin()
+        {
+            gameover = true;
+            PacTimer.Stop();
+            //lblrestartMessage.Visible = true;
+           // lblWinMessage.Visible = true;
+        }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             //Draw the differnt walls on the form

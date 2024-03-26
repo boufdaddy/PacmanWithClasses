@@ -15,7 +15,7 @@ namespace FinalProjectPacmanWithClasses
         private Form form;
         private int xLoc;
         private int yLoc;
-        private int pacmanSpeed = 8;
+        private int pacmanSpeed = 10;
         //private int ySpeed = 6;
 
         public int X { get { return myPic.Left; } }

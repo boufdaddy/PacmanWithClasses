@@ -34,7 +34,6 @@
             // 
             // PacTimer
             // 
-            this.PacTimer.Enabled = true;
             this.PacTimer.Interval = 50;
             this.PacTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 

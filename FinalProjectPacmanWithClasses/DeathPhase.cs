@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,9 @@ namespace FinalProjectPacmanWithClasses
 
         private void btnretry_Click(object sender, EventArgs e)
         {
-            //gameform.Refresh();
-            //gameform.Show();
+            gameform.Refresh();
+            gameform.Show();
+            gameform.Shown += (s, arg) => this.Close();
 
         }
     }

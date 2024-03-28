@@ -26,6 +26,23 @@ namespace FinalProjectPacmanWithClasses
         private void StartGame_Click(object sender, EventArgs e)
         {
             game.Show();
+            this.Hide();
+           //game.Shown += (s, arg) => this.Close();
+        }
+
+        private void ShowCredits_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("GAME CREATED BY CHARLES");
+        }
+
+        private void ExitGame_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void StartingGame_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -82,6 +82,7 @@
             this.ShowCredits.Size = new System.Drawing.Size(101, 31);
             this.ShowCredits.TabIndex = 6;
             this.ShowCredits.Text = "Credits";
+            this.ShowCredits.Click += new System.EventHandler(this.ShowCredits_Click);
             // 
             // ExitGame
             // 
@@ -93,6 +94,7 @@
             this.ExitGame.Size = new System.Drawing.Size(59, 31);
             this.ExitGame.TabIndex = 7;
             this.ExitGame.Text = "Exit";
+            this.ExitGame.Click += new System.EventHandler(this.ExitGame_Click);
             // 
             // StartingGame
             // 
@@ -107,6 +109,7 @@
             this.Controls.Add(this.picPacMan);
             this.Name = "StartingGame";
             this.Text = "StartingGame";
+            this.Load += new System.EventHandler(this.StartingGame_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picPacMan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

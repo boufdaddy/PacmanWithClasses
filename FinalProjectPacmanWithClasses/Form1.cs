@@ -1,9 +1,11 @@
-﻿using System;
+﻿using FinalProjectPacmanWithClasses.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,13 +14,17 @@ namespace FinalProjectPacmanWithClasses
 {
     public partial class Form1 : Form
     {
-        
+        SoundPlayer Death = new SoundPlayer(Resources.male_scream_in_fear_123079);
+        SoundPlayer GameSound = new SoundPlayer(Resources.Monkey_sounds);
+
         //BOOLEAN OPERATIONS TO MAKE DECISIONS IN THE GAMES
         bool upMove;
         bool downMove;
         bool leftMove;
         bool rightMove;
         bool gameover;
+
+        int scorecount;
 
         List<Coin> myPicList = new List<Coin>();
         List<Wall> wallList = new List<Wall>();
@@ -43,6 +49,7 @@ namespace FinalProjectPacmanWithClasses
         public Form1()
         {
             InitializeComponent();
+            Restart();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,14 +61,16 @@ namespace FinalProjectPacmanWithClasses
             this.Width = 1700;
             this.Height = 1000;
             PacTimer.Enabled = true;
-            Restart();
+            //Restart();
 
 
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(gameover)
+
+            
+            if (gameover)
             {
                 PacTimer.Enabled = false;
                 return;
@@ -70,6 +79,8 @@ namespace FinalProjectPacmanWithClasses
             Pinkalien.MoveLeftRight();
             RedAlien.Move();
             YellowAlien.MoveLeftRight();
+
+            
 
             if (leftMove == true)
             {
@@ -110,8 +121,9 @@ namespace FinalProjectPacmanWithClasses
             {
                 if (PacmanWallCollisionTest(Pac, w))
                 {
+                    Death.Play();
                     GameOverloss();
-                    return;
+                    //return;
                 }
 
             }
@@ -122,17 +134,30 @@ namespace FinalProjectPacmanWithClasses
             {
                 if(PacmanAlienCollisionTest(Pac, a))
                 {
-                    //GameOverloss();
+                    Death.Play();
+                    GameOverloss();
+                }
+            }
+            // to check collision of coin and add a numbr to score count
+            List<int> ints = new List<int>();
+            for (int i = 0; i < myPicList.Count; i++)
+            {
+                if (PacmanCoinCollisionTest(Pac, myPicList[i]))
+                {
+
+                    scorecount++;
+                    ints.Add(i);
+                    myPicList[i].myPic.Visible = false;
                 }
             }
 
-            foreach(Coin c in myPicList)
+            foreach (int i in ints)
             {
-                if(PacmanCoinCollisionTest(Pac, c))
-                {
-                    c.myPic.Visible = false;
-                }
+                myPicList.RemoveAt(i);
             }
+
+            
+
             //Collision code for Pinkalien
             if (WallAlienCollisionTest(wall1, Pinkalien))
             {
@@ -178,16 +203,22 @@ namespace FinalProjectPacmanWithClasses
                 RedAlien.ChangeDir();
             }
 
-            
 
-           
+            //label to display scorecount
 
-            
-                
-            
+            lblscorecount.Text = scorecount.ToString();
+
+            if (scorecount == 65)
+            {
+                GameOverWin();
+            }
+
         }
         private void Restart()
         {
+            GameSound.PlayLooping();
+
+            // codes to place elements at various sections of the screen
             Pac = new Pacman(100, 500, this, new Bitmap("rightPac.gif"));
 
 
@@ -244,11 +275,7 @@ namespace FinalProjectPacmanWithClasses
                 coin = new Coin(450 + (100 * i), this.ClientSize.Height - 250, this);
                 myPicList.Add(coin);
             }
-            // for collision
-            //foreach (Coin c in myPicList)
-            //{
-            //    if (c.myPic.Bounds.IntersectsWith(c.myPic.Bounds))
-            //}
+           
 
             //create instances for the wall borders
             wall1 = new Wall(350, 0, this);
@@ -272,23 +299,22 @@ namespace FinalProjectPacmanWithClasses
         {
             gameover = true;
             DeathPhase death = new DeathPhase();
-            //a simple method to stop the game when certain conditions earlier happen
+            
+            this.Hide();
 
-            //PacTimer.Stop();
-             this.Hide();
-           
+          
             death.Show();
-            //PacTimer.Stop();
-            // lblrestartMessage.Visible = true;
-            // lbllossMessage.Visible = true;
+         
         }
 
         private void GameOverWin()
         {
             gameover = true;
-            PacTimer.Stop();
-            //lblrestartMessage.Visible = true;
-           // lblWinMessage.Visible = true;
+            WinningPhase winning = new WinningPhase();
+
+            this.Hide();
+            winning.Show();
+            
         }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
@@ -401,6 +427,11 @@ namespace FinalProjectPacmanWithClasses
             {
                 rightMove = false;
             }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
